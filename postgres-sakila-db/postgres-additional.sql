@@ -8,7 +8,7 @@ create table view_with_rules_t1
   ctr_capital int
 );
 
-create table view_with_rules_t2_new
+create table view_with_rules_t2_updated_new
 (
   ctr            smallint    not null /*references country*/,
   cty            integer     not null,
@@ -23,7 +23,7 @@ create or replace view view_with_rules_updated
            cty,
            cty_name
     from view_with_rules_t1
-      natural join view_with_rules_t2
+      natural join view_with_rules_t2_updated
     where cty_is_capital;
 
 create rule rule_for_view as
@@ -31,7 +31,7 @@ on insert to view_with_rules
 do instead (
   insert into view_with_rules_t1 (ctr , ctr_name , ctr_capital)
   values (new.ctr, new.ctr_name, new.cty);
-  insert into view_with_rules_t2 (ctr , cty , cty_name , cty_is_capital)
+  insert into view_with_rules_t2_updated (ctr , cty , cty_name , cty_is_capital)
   values (new.ctr, new.cty, new.cty_name, true)
 );
 
