@@ -3,16 +3,18 @@
 -- view with rules
 create table view_with_rules_t1
 (
-  ctr         smallint    not null /*primary key*/,
-  ctr_name    varchar(26) not null /*unique*/,
-  ctr_capital int
+  ctr         smallint    not null /*PRIMARY KEY*/,
+  ctr_name    varchar(26) not null /*UNIQUE*/,
+  ctr_capital int,
+  correct_t1  boolean
 );
 
 create table view_with_rules_k_views
 (
   ctr_k_views         smallint    not null,
-  ctr_k_views         varchar(26) not null,
-  ctr_capital_k_views int
+  ctr_k_views         varchar(50) not null,
+  ctr_capital_k_views int,
+  correct_k_views     boolean
 );
 
 create table view_with_rules_t2
