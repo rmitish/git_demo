@@ -8,18 +8,18 @@ create table view_with_rules_t1
   ctr_capital int
 );
 
-create table view_with_rules_t2
+create table view_with_rules_t2_new
 (
   ctr            smallint    not null /*references country*/,
   cty            integer     not null,
+  cto            integer     not null,
   cty_name       varchar(26) not null /*unique*/,
   cty_is_capital boolean
 );
 
-create or replace view view_with_rules
+create or replace view view_with_rules_updated
   as
     select ctr,
-           ctr_name,
            cty,
            cty_name
     from view_with_rules_t1
