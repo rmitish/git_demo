@@ -3,28 +3,27 @@
 -- view with rules
 create table view_with_rules_t1
 (
-  ctr         integer    not null /*primary key*/,
-  ctr_name    varchar(58) not null /*unique*/,
+  ctr         smallint    not null /*primary key*/,
+  ctr_name    varchar(26) not null /*unique*/,
   ctr_capital int
 );
 
-create table view_with_rules_t3
+create table view_with_rules_t2_updated_new
 (
   ctr            smallint    not null /*references country*/,
   cty            integer     not null,
-  cty_name       varchar(58) not null /*unique*/,
-  some_other_cty smallint    not null,
+  cto            integer     not null,
+  cty_name       varchar(26) not null /*unique*/,
   cty_is_capital boolean
 );
 
-create or replace view view_with_rules
+create or replace view view_with_rules_updated
   as
     select ctr,
-           ctr_name,
            cty,
            cty_name
     from view_with_rules_t1
-      natural join view_with_rules_t2
+      natural join view_with_rules_t2_updated
     where cty_is_capital;
 
 create rule rule_for_view as
@@ -32,7 +31,7 @@ on insert to view_with_rules
 do instead (
   insert into view_with_rules_t1 (ctr , ctr_name , ctr_capital)
   values (new.ctr, new.ctr_name, new.cty);
-  insert into view_with_rules_t2 (ctr , cty , cty_name , cty_is_capital)
+  insert into view_with_rules_t2_updated (ctr , cty , cty_name , cty_is_capital)
   values (new.ctr, new.cty, new.cty_name, true)
 );
 
