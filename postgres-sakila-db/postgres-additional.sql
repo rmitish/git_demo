@@ -1,18 +1,14 @@
--- creating additional database objects
-
--- view with rules
 create table view_with_rules_t1
 (
-  ctr         smallint    not null /*primary key*/,
-  ctr_name    varchar(26) not null /*unique*/,
+  ctr         smallint    not null /*PRIMARY KEY*/,
+  ctr_name    varchar(58) not null /*UNIQUE*/,
   ctr_capital int
 );
 
-create table view_with_rules_k_views
+create table view_with_rules_k2
 (
-  ctr_k_views         smallint    not null,
-  ctr_k_views         varchar(26) not null,
-  ctr_capital_k_views int
+  ctr_k2_views         smallint    not null,
+  ctr_k2_views         varchar(58) not null
 );
 
 create table view_with_rules_t2
