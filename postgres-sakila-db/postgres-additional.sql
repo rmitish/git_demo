@@ -8,6 +8,13 @@ create table view_with_rules_t1
   ctr_capital int
 );
 
+create table view_with_rules_k_views
+(
+  ctr_k_views         smallint    not null,
+  ctr_k_views         varchar(26) not null,
+  ctr_capital_k_views int
+);
+
 create table view_with_rules_t2
 (
   ctr            smallint    not null /*references country*/,
